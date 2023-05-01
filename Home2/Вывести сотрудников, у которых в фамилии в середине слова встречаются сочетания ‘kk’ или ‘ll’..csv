@@ -1,0 +1,2 @@
+employee_id,first_name,last_name,email,phone_NUMERIC,job_id,salary,commission_pct,manager_id,department_id
+126,Irene,Mikkilineni,IMIKKILI,650.124.1224,ST_CLERK,2700.00,NULL,120,50
