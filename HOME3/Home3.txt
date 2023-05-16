@@ -1,0 +1,46 @@
+SELECT department_id, 1 as field  FROM hr.employees where salary >10000 order by salary desc;
+SELECT department_id, 0 as field  FROM hr.employees where salary <10000 order by salary;
+SELECT * FROM hr.employees order by last_name;
+SELECT * FROM hr.employees order by salary desc;
+SELECT * FROM hr.employees where department_id in (60, 90, 110) order by last_name;
+select * from hr.jobs where job_id = 'ST_CLERK' order by max_salary desc;
+SELECT * FROM hr.employees where first_name like 'D%' order by last_name;
+
+
+
+
+
+SELECT side_number, case
+when production_year < 2000 then 'Old'
+when production_year between 2000 and 2010 then 'Mid'
+else 'New' end as age
+ FROM airport.airliners;
+
+
+ select id, trip_id, case
+ when service_class = 'Economy' then price * 0.9
+ when service_class = 'Business' then price * 0.85
+ when service_class = 'PremiumEconomy' then price * 0.8 end  as newprice
+ from airport.tickets where trip_id in ('LL4S1G8PQW', '0SE4S0HRRU', 'JQF04Q8I9G');
+
+
+create database good;
+use good;
+create table goods(
+id integer primary key auto_increment,
+title varchar(128),
+quantity integer);
+insert into goods(title, quantity) values
+('desc', 200),
+('chair',400),
+('pen', 35),
+('rubber',35);
+alter table goods add column price integer default 0; 
+select * from goods;
+set sql_safe_updates = 0;
+update goods set price= 15 where title like 'desc';
+delete from goods where title = 'pen';
+alter table goods drop column price;
+drop table goods;
+
+
