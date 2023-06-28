@@ -1,0 +1,73 @@
+use tmp;
+
+db.createCollection('products')
+
+db.products.insertMany([
+{id: 1, title: 'велосипед', price: 3400}, 
+{id: 2, titlt: 'ролики', price: 700}])
+
+
+// добавить 4 произвольных товара
+db.products.insertMany([
+{id: 3, title: 'BMW', price: 34000}, 
+{id: 4, titlt: 'AMG', price: 37000},
+{id: 5, title: 'Renault', price: 13400}, 
+{id: 6, titlt: 'Lada', price: 5700}]) 
+
+//create and add element
+db.Users.insertMany([
+{id: 1, name: 'Максим', lastname: 'Грибов', age:32},
+{id: 2, name: 'Ольга', lastname: 'Сидорова', age:27},
+{id: 3, name: 'Роман', lastname: 'Иванов', age:35}])  
+
+
+//it is drop
+db.Users.drop()
+
+           
+//it is select
+db.Users.find({id: 2})    
+
+$gt //more
+$gte //more or equalse
+
+$lt //lower
+$lie //lower or equalse
+
+
+//show all items
+db.products.find() 
+
+db.products.find({price: {$gt: 1000}})
+
+
+
+//вывести товары, которые дешевле 4000
+db.products.find({price: {$lt: 4000}}) 
+
+and //
+or  //
+
+
+//найти продукты, которые стоят либо меньше 1000 либо больше 2000
+db.products.find({
+                 $or:[
+                 {price: {$lte: 1000}},
+                 {price: {$gte: 2000}}
+]
+})
+
+
+
+//найти продукты, у которых цена от 1000 до 2000 
+//1000 включительно, а 2000 не включительно
+
+db.products.find({
+                 $and:[
+                 {price: {$gte: 500}},
+                 {price: {$lt: 2000}}
+]
+})
+
+db.products.find({price: {$gte: 500, $lt: 2000}})                                      
+
