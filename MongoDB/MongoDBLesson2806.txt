@@ -32,7 +32,7 @@ $gt //more
 $gte //more or equalse
 
 $lt //lower
-$lie //lower or equalse
+$lte //lower or equalse
 
 
 //show all items
