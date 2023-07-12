@@ -1,0 +1,93 @@
+Lesson 120723
+
+find count documents in collection.
+db.products.aggregate({$count: "productCount"})
+
+find avg for column price
+db.products.aggregate([{$group: {_id: null, avgPrice: {$avg: '$price'}}}])
+
+add in request output max and min price
+db.products.aggregate([{$group: {_id: null, maxPrice: {$max: '$price'}}}])
+db.products.aggregate([{$group: {_id: null, minPrice: {$min: '$price'}}}])
+db.products.aggregate([{$group: {_id: null, avgPrice: {$avg: '$price'},maxPrice: {$max: '$price'},minPrice: {$min: '$price'}}}])
+
+find sum price in category: 'electronics'
+db.products.aggregate([{$match: {category: 'electronics'}},{$group: {_id: null, sumPrice: {$sum: '$price'}}}])
+
+find min price in category: 'electronics'
+db.products.aggregate([{$match: {category: 'electronics'}},{$group: {_id: null, minPrice: {$min: '$price'}}}])
+
+
+find min price group category
+db.products.aggregate([{$group: {_id: '$category', minPrice: {$min: '$price'}}}])
+
+
+find avg count group category
+db.products.aggregate([{$group: {_id: '$category', avgCount: {$avg: '$countOfOrderedUnits'}}}])
+
+
+find sum count group category isn't home
+db.products.aggregate([{$match: {category: {$ne: 'home'}}},
+{$group: {_id: '$category', sumCount: {$sum: '$countOfOrderedUnits'}}}])
+
+
+
+
+find sum, min, max count group category isn't home
+db.products.aggregate([{$match: {category: {$ne: 'home'}}},
+{$group: {_id: '$category', sumCount: {$sum: '$countOfOrderedUnits'},
+          minCount: {$min: '$countOfOrderedUnits'},
+          maxCount: {$max: '$countOfOrderedUnits'}}}])
+
+
+output name product with max marks
+db.products.aggregate([{$project: {_id: 1, maxMark: {$max: '$marks'}}}])
+
+find avg count marks in products
+db.products.aggregate([{$project: {_id: 1, countMark: {$size: '$marks'}}},{$group: {_id: null, avgCount: {$avg: '$countMark'}}}])
+
+
+add and calculate total sum marks
+db.products.aggregate([{$project: {_id: 1, countMarks: {$size: '$marks'}, sumMarks: {$sum: '$marks'}}},
+                       {$group: {_id: null, sumCount:  {$avg: '$countMarks'}, sumMarks: {$sum: '$sumMarks'}}}])
+
+
+find students where gender is man
+db.students.find({gender: 'm'})
+
+find count marks in evryone students
+db.students.aggregate([{$project: {firstName: 1, marksCnt: {$size: '$grades'}}}])
+
+
+find avg classNumber in total collection
+db.students.aggregate([{$group: {_id: null, avgClassNumber: {$avg: '$classNumber'}}}])
+
+
+find avg classNumber for every gender
+db.students.aggregate([{$group: {_id: '$gender', avgClassNumber: {$avg: '$classNumber'}}}])
+
+
+find avg classNumber for every gender where 6 class isn't
+db.students.aggregate([{$match: {classNumber: {$ne: 6}}},{$group: {_id: '$gender', avgClassNumber: {$avg: '$classNumber'}}}])
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
