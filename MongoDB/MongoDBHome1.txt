@@ -10,7 +10,10 @@ db.products.find({category: {$in: ['home','electronics']}})
 
 
 Увеличить на 1 поле "countOfOrderedUnits" у всех товаров с категорией "music"
-db.products.updateMany({category: 'music'}, {$set: {countOfOrderedUnits: +1}})  ???????????????
+db.products.updateMany({category: 'music'}, {$inc: {countOfOrderedUnits: 1.1}})
+
+
+db.products.updateMany({category: 'music'}, {$mul: {countOfOrderedUnits: 1}})
 
 
 Найти все товары, у которых поле "marks" содержит значения 4 и 5
@@ -25,13 +28,13 @@ db.products.updateMany({category: 'sport'}, {$set: {sport: 'sports'}})
 db.products.find({marks: {$nin: [3]}})
 
 Обновить поле "marks" у товара с идентификатором 8, добавив значение 5
-?????????????????
+db.products.updateMany({marks: 8}, {$inc: {countOfOrderedUnits: 5}})
 
 Найти все товары, у которых поле "countOfOrderedUnits" больше или равно 10
 db.products.find({countOfOrderedUnits: {$gte: 10}})
 
 Обновить поле "count" у всех товаров с категорией "music", увеличив его на 5
-??????????????????
+db.products.updateMany({category: 'music'}, {$inc: {count: 5}}) 
 
 Найти все товары, у которых поле "marks" содержит все значения [4, 5]
 db.products.find({$or: [{marks: 4}, {marks: 5}]})
