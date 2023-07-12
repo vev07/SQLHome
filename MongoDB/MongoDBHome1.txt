@@ -16,6 +16,9 @@ db.products.updateMany({category: 'music'}, {$inc: {countOfOrderedUnits: 1.1}})
 db.products.updateMany({category: 'music'}, {$mul: {countOfOrderedUnits: 1}})
 
 
+db.products.find({marks: {$size: 4}})
+
+
 Найти все товары, у которых поле "marks" содержит значения 4 и 5
 db.products.find({$and: [{marks: 4}, {marks: 5}]})
 
