@@ -1,0 +1,21 @@
+ 1 уровень сложности: В рамках БД "соц/сеть" напишите след/запросы:
+
+
+Вывести ко-во заблокированных юзеров
+db.users.countDocuments({is_blocked: true})
+
+
+Вывести страны незаблокированных юзеров
+db.users.find({is_blocked: true}, {country: 1, _id: 0})
+
+
+Заблокировать юзеров из China
+db.users.updateMany({country: 'China'}, {$set: {is_blocked: true}})
+
+
+Увеличить баланс всех незаблокированных юзеров на 100
+db.users.updateMany({is_blocked: true},{$inc: {balance: 100}})
+
+
+Добавить несколько реакций в коллекцию reactions
+db.reactions.insertMany([{post_id: 2, user_id: 2, reaction: 5},{post_id: 3, user_id: 2, reaction: 1}])
